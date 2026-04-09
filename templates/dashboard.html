@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>FocusLens</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        stone: {
+                            850: '#1c1917',
+                            900: '#0c0a09',
+                            950: '#0c0a09'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Helvetica', 'Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-stone-950 text-stone-200 min-h-screen font-sans selection:bg-white selection:text-stone-950">
+    <div id="grid-background" class="grid-background"></div>
+
+    <div class="content-wrapper p-6 md:p-12 max-w-7xl mx-auto">
+        <header class="mb-12 flex flex-col md:flex-row justify-between items-center border-b border-stone-800 pb-6">
+            <div class="flex items-center gap-4">
+                <a href="/" class="group">
+                    <h1
+                        class="text-3xl font-extrabold text-stone-100 tracking-tighter uppercase group-hover:text-white transition-colors">
+                        FocusLens
+                    </h1>
+                </a>
+                <span class="text-stone-600 text-xl font-light">/</span>
+                <span class="text-stone-400 font-mono text-sm tracking-wide">Dashboard</span>
+            </div>
+            <div class="mt-4 md:mt-0 text-right hidden md:block">
+                <div class="text-stone-500 text-sm font-mono">v1.2.0-stable</div>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <div class="glass-panel p-8">
+                <h2
+                    class="text-xl font-semibold mb-6 text-stone-200 flex items-center gap-3 border-b border-stone-800 pb-4">
+                    <span class="w-2 h-2 rounded-full bg-white"></span>
+                    Log New Session
+                </h2>
+
+                <div
+                    class="bg-stone-900 border border-stone-800 text-stone-400 px-4 py-3 rounded-md mb-6 text-sm flex items-start gap-3">
+                    <svg class="w-5 h-5 text-white mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <p>Consistent tracking improves prediction accuracy by 32%.</p>
+                </div>
+
+                <form method="post" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label
+                                class="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-1 ml-1">Date</label>
+                            <input type="date" name="session_date" required
+                                class="w-full px-4 py-3 bg-stone-900/30 border border-transparent border-b-stone-700 rounded-t-lg text-stone-100 placeholder-stone-600 focus:outline-none focus:border-b-white focus:bg-stone-900/80 transition-all duration-300">
+                        </div>
+                        <div class="space-y-2">
+                            <label
+                                class="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-1 ml-1">Time
+                                Period</label>
+                            <select name="time_period" required
+                                class="w-full px-4 py-3 bg-stone-900/30 border border-transparent border-b-stone-700 rounded-t-lg text-stone-100 placeholder-stone-600 focus:outline-none focus:border-b-white focus:bg-stone-900/80 transition-all duration-300 appearance-none">
+                                <option value="morning">Morning</option>
+                                <option value="afternoon">Afternoon</option>
+                                <option value="evening">Evening</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label
+                                class="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-1 ml-1">Duration
+                                (min)</label>
+                            <div class="relative">
+                                <input type="number" name="duration" required
+                                    class="w-full px-4 py-3 bg-stone-900/30 border border-transparent border-b-stone-700 rounded-t-lg text-stone-100 placeholder-stone-600 focus:outline-none focus:border-b-white focus:bg-stone-900/80 transition-all duration-300">
+                                <span class="absolute right-4 top-3 text-stone-500 text-sm">min</span>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label
+                                class="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-1 ml-1">Energy
+                                Level</label>
+                            <select name="energy_level" required
+                                class="w-full px-4 py-3 bg-stone-900/30 border border-transparent border-b-stone-700 rounded-t-lg text-stone-100 placeholder-stone-600 focus:outline-none focus:border-b-white focus:bg-stone-900/80 transition-all duration-300 appearance-none">
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label
+                            class="block text-xs font-semibold text-stone-500 uppercase tracking-wider mb-1 ml-1">Task
+                            Type</label>
+                        <input type="text" name="task_type" placeholder="e.g. Deep Work, Learning, Admin" required
+                            class="w-full px-4 py-3 bg-stone-900/30 border border-transparent border-b-stone-700 rounded-t-lg text-stone-100 placeholder-stone-600 focus:outline-none focus:border-b-white focus:bg-stone-900/80 transition-all duration-300">
+                    </div>
+
+                    <button type="submit"
+                        class="w-full bg-white hover:bg-stone-200 text-stone-950 font-bold py-4 rounded-lg transition-all shadow-[0_4px_14px_0_rgba(255,255,255,0.1)] hover:shadow-[0_6px_20px_rgba(255,255,255,0.23)] border border-transparent transform hover:-translate-y-0.5">
+                        Save Session Entry
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

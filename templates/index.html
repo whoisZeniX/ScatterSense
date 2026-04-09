@@ -1,11 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>ScatterSense</title>
-</head>    
-<body>
-    <h1>ScatterSense</h1>
-    <p>Productivity Tracking System</p>
-</body>
+    <title>FocusLens</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        stone: {
+                            850: '#1c1917',
+                            900: '#0c0a09',
+                            950: '#0c0a09'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Helvetica', 'Inter', 'sns-serif'],
+                        mono: ['JetBrains mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body 
+     class="bg-stone-950 text-stone-200 min-h-screen font-sans selection:bg-white selection:text-stone-950 flex items-center justify-center overflow-hidden">
+     <div id="grid-background" class="grid-background"></div>
+
+     <div class="content-wrapper relative z-10 max-w-4xl mx-auto px-6 text-center">
+        <h1 class="text-7xl md:text-9xl font-extrabold text-stone-100 tracking-tighter uppercase mb-6 drop-shadow-2xl">
+            ScatterSense
+        </h1>
+
+        <p 
+           class="text-stone-400 text-xl md:text-2xl font-light mb-12 max-w-2xl mx-auto leading-relaxed border-l-4 border-stone-800 pl-6 text-left md:text-center md:border-l-0 md:pl-0">
+           A minimilist productivity intelligence system designed to track, analyze, and optimize your cognitive output 
+           with precision. 
+        </p>
+
+        <div class="space-y-4 md:space-y-0 md:space-x-6">
+            <a href="/dashboard"
+                class="inline-block bg-white hover:bg-stone-200 text-stone-950 font-bold text-lg py-5 px-10 rounded-lg transition-all shadow-[0_4px_14px_0_rgba(255,255,255,0.1)] hover:shadow-[0_6px_20px_rgba(255,255,255,0.23)] transformhover:-translate-y-1">
+                Enter System
+            </a>
+        </div>
+
+        <div class="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8 text-stone-500 font-mono text-sm opacity-60">
+            <div>
+                <span class="block text-2xl font-bold text-stone-300">01</span>
+                <span>DATA</span>
+            </div>
+            <div>
+                <span class="block text-2xl font-bold text-stone-300">02</span>
+                <span>ANALYSIS</span>
+            </div>
+            <div> 
+                <span class="block text-2xl font-bold text-stone-300">03</span>
+                <span>INSIGHT</span>
+            </div>
+            <div>
+                <span class="block text-2xl font-bold text-stone-300">04</span>
+                <span>OPTIMIZE</span>
+            </div>
+        </div>
+     </div>
+    </body>
+    
 </html>

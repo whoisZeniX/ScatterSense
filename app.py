@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect
 
-from database import initialize_database, insert_session, fetch_sessions
+from database import initialize_database, insert_session, fetch_sessions, delete_session
 
 app = Flask(__name__)
 
@@ -15,18 +15,23 @@ def handle_submission():
 
     insert_session(session_date, time_period, duration, energy_level, task_type)
 
- @app.route("/")
-def landing():
-    return render_template("index.html")   
-
 @app.route("/")
 def landing():
+    return render_template("index.html")
+
+@app.route("/dashboard", methods=["GET", "POST"])
+def dashboard():
     if request.method == "POST":
         handle_submission()
         return redirect("/dashboard")
-
+    
     sessions = fetch_sessions()
-    return render_template("dashboard.html", sessions=sessions )
+    return render_template("dashboard.html", sessions=sessions)
+
+@app.route("/delete/,int:session_id>", methods=["POST"])
+def remove_session(session_id):
+    delete_session(session_id)
+    return redirect("/dashboard")
 
 if __name__ == "__main__":
     app.run(debug=True)

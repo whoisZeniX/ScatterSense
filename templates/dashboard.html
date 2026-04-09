@@ -124,6 +124,70 @@
                 </form>
             </div>
         </div>
+
+        <div class="glass-panel p-8">
+            <div class="flex justify-between items-center mb-6 border-b border-stone-800 pb-4">
+                <h2 class="text-xl font-semibold text-stone-200 flex items-center gap-3">
+                    <span class="w-2 h-2 rounded-full bg-white"></span>
+                    Session History
+                </h2>
+                <span
+                    class="text-xs text-stone-500 font-mono bg-stone-900 px-2 py-1 rounded border border-stone-800">TOTAL:
+                    {{ sessions|length }}</span>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead>
+                        <tr class="text-stone-500 border-b border-stone-800">
+                            <th class="pb-4 font-medium pl-2">Date</th>
+                            <th class="pb-4 font-medium">Time Period</th>
+                            <th class="pb-4 font-medium">Duration</th>
+                            <th class="pb-4 font-medium">Energy</th>
+                            <th class="pb-4 font-medium">Task Context</th>
+                            <th class="pb-4 text-right pr-2">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-stone-800/50">
+                        {% for session in sessions %}
+                        <tr class="group hover:bg-stone-800/50 transition-colors">
+                            <td class="py-4 pl-2 text-stone-300 font-mono text-xs">{{ session[1] }}</td>
+                            <td class="py-4 text-stone-300 capitalize">
+                                <span class="inline-flex items-center gap-1.5">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-stone-500"></span>
+                                    {{ session[2] }}
+                                </span>
+                            </td>
+                            <td class="py-4 text-stone-300">{{ session[3] }} min</td>
+                            <td class="py-4">
+                                <span class="px-2 py-0.5 rounded text-[11px] font-medium border
+                                    {% if session[4] == 'high' %} bg-stone-800 text-stone-300 border-stone-700
+                                    {% elif session[4] == 'medium' %} bg-stone-900 text-stone-400 border-stone-800
+                                    {% else %} bg-stone-950 text-stone-500 border-stone-900 {% endif %}">
+                                    {{ session[4]|upper }}
+                                </span>
+                            </td>
+                            <td class="py-4 text-stone-300">{{ session[5] }}</td>
+                            <td class="py-4 text-right pr-2">
+                                <form method="post" action="/delete/{{ session[0] }}" class="inline">
+                                    <button type="submit"
+                                        class="text-stone-600 hover:text-stone-400 transition-colors p-1.5 hover:bg-stone-800 rounded">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M3 6h18"></path>
+                                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                                            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                                        </svg>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </body>
 

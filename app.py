@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect
 
 from database import initialize_database, insert_session, fetch_sessions, delete_session
+from utils.analysis import analyze_sessions
 
 app = Flask(__name__)
 
@@ -24,14 +25,15 @@ def dashboard():
     if request.method == "POST":
         handle_submission()
         return redirect("/dashboard")
-    
-    sessions = fetch_sessions()
-    return render_template("dashboard.html", sessions=sessions)
 
-@app.route("/delete/,int:session_id>", methods=["POST"])
-def remove_session(session_id):
+    sessions = fetch_sessions()
+    insights = analyze_sessions(sessions)
+    return render_template("dashboard.html", sessions=sessions, insights=insights)
+
+@app.route("/delete/<int:session_id>", methods=["POST"])
+def remove_sessions(session_id):
     delete_session(session_id)
     return redirect("/dashboard")
 
-if __name__ == "__main__":
-    app.run(debug=True)
+if __name__ == "__main__"
+    app.run(debug=True)    

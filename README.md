@@ -1,8 +1,13 @@
 # ScatterSense
+
 <div align="center">
    
-
 **ScatterSense is a productivity tracking application designed to provide insights into your work sessions. It allows users to log their focus sessions, track energy levels, and analyze performance patterns to optimize productivity.**
+
+<br>
+
+**[ View Live Demo Here ](https://scattersense.onrender.com)**  
+*(Replace this with your actual live project link if different)*
 
 </div>
 

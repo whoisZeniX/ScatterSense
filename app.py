@@ -19,8 +19,11 @@ def handle_submission():
 
     insert_session(session_date, time_period, duration, energy_level, task_type)
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def landing():
+    if request.method == "POST":
+        handle_submission()
+        return redirect("/dashboard")
     return render_template("index.html")
 
 @app.route("/dashboard", methods=["GET", "POST"])

@@ -1,4 +1,6 @@
-from flask import Flask, render_template, request, redirect, jsonify
+import csv
+import io
+from flask import Flask, render_template, request, redirect, jsonify, Response
 
 from database import initialize_database, insert_session, fetch_sessions, fetch_filtered_sessions, delete_session
 from utils.analysis import analyze_sessions
@@ -53,6 +55,19 @@ def chart_data():
     sessions = fetch_sessions()
     insights = analyze_sessions(sessions)
     return jsonify(insights)
+
+@app.route("/export")
+def export_data():
+    sessions = fetch_sessions()
+    si = io.StringIO()
+    cw = csv.writer(si)
+    cw.writerow(["ID", "Date", "Time Period", "Duration (min)", "Energy Level", "Task Type"])
+    for session in sessions:
+        cw.writerow(session)
+
+    response = Response(si.getvalue(), mimetype="text/csv")
+    response.headers["Content-Disposition"] = "attachment; filename=scattersense_sessions.csv"
+    return response
 
 if __name__ == "__main__":
     app.run(debug=True)

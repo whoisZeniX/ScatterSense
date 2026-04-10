@@ -153,6 +153,53 @@
             </div>
         </div>
 
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+            <div class="glass-panel p-6 text-center">
+                <div class="text-stone-500 text-[10px] uppercase tracking-wider font-semibold mb-2">Productivity Score</div>
+                <div class="text-3xl font-bold text-stone-100">
+                    {% if insights and insights.productivity_score is defined %}
+                        {{ insights.productivity_score }}
+                    {% else %}
+                        --
+                    {% endif %}
+                </div>
+                <div class="text-stone-600 text-xs mt-1">out of 100</div>
+            </div>
+            <div class="glass-panel p-6 text-center">
+                <div class="text-stone-500 text-[10px] uppercase tracking-wider font-semibold mb-2">Total Sessions</div>
+                <div class="text-3xl font-bold text-stone-100">
+                    {% if insights and insights.total_sessions is defined %}
+                        {{ insights.total_sessions }}
+                    {% else %}
+                        0
+                    {% endif %}
+                </div>
+                <div class="text-stone-600 text-xs mt-1">logged</div>
+            </div>
+            <div class="glass-panel p-6 text-center">
+                <div class="text-stone-500 text-[10px] uppercase tracking-wider font-semibold mb-2">Focus Time</div>
+                <div class="text-3xl font-bold text-stone-100">
+                    {% if insights and insights.total_focus_hours is defined %}
+                        {{ insights.total_focus_hours }}h
+                    {% else %}
+                        0h
+                    {% endif %}
+                </div>
+                <div class="text-stone-600 text-xs mt-1">total hours</div>
+            </div>
+            <div class="glass-panel p-6 text-center">
+                <div class="text-stone-500 text-[10px] uppercase tracking-wider font-semibold mb-2">Avg Duration</div>
+                <div class="text-3xl font-bold text-stone-100">
+                    {% if insights and insights.average_duration is defined %}
+                        {{ insights.average_duration }}
+                    {% else %}
+                        --
+                    {% endif %}
+                </div>
+                <div class="text-stone-600 text-xs mt-1">minutes</div>
+            </div>
+        </div>
+
         <div class="glass-panel p-8">
             <div class="flex justify-between items-center mb-6 border-b border-stone-800 pb-4">
                 <h2 class="text-xl font-semibold text-stone-200 flex items-center gap-3">

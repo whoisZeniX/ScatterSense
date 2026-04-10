@@ -1,7 +1,7 @@
 def analyze_sessions(sessions):
     if not sessions:
         return {}
-    
+
     time_counts = {}
     total_duration = 0
     energy_counts = {}
@@ -23,4 +23,4 @@ def analyze_sessions(sessions):
         "most_productive_time": most_productive_time,
         "most_common_energy": most_common_energy,
         "average_duration": average_duration
-    }    
+    }

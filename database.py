@@ -1,7 +1,7 @@
 import sqlite3
 
 def get_connection():
-    return sqlite3.connect("focuslens.db")
+    return sqlite3.connect("scattersense.db")
 
 def initialize_database():
     connection = get_connection()
@@ -27,7 +27,7 @@ def fetch_sessions():
     cursor = connection.cursor()
     cursor.execute(
         "SELECT id, session_date, time_period, duration, energy_level, task_type FROM sessions ORDER BY id DESC"
-    )    
+    )
     rows = cursor.fetchall()
     connection.close()
     return rows

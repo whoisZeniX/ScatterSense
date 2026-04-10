@@ -10,9 +10,9 @@ def analyze_sessions(sessions):
     energy_scores = []
 
     for session in sessions:
-        time_period = session[1]
-        duration = int(session[2])
-        energy = session[3]
+        time_period = session[2]
+        duration = int(session[3])
+        energy = session[4]
         task = session[5] if len(session) > 5 else "unknown"
 
         time_counts[time_period] = time_counts.get(time_period, 0) + 1
@@ -54,5 +54,8 @@ def analyze_sessions(sessions):
         "total_focus_hours": total_focus_hours,
         "productivity_score": productivity_score,
         "streak": streak,
-        "total_duration": total_duration
+        "total_duration": total_duration,
+        "time_distribution": time_counts,
+        "task_distribution": task_counts,
+        "energy_trend": energy_scores[::-1]
     }

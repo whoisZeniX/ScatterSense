@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, jsonify
 
-from database import initialize_database, insert_session, fetch_sessions, delete_session
+from database import initialize_database, insert_session, fetch_sessions, fetch_filtered_sessions, delete_session
 from utils.analysis import analyze_sessions
 
 app = Flask(__name__)
@@ -26,9 +26,22 @@ def dashboard():
         handle_submission()
         return redirect("/dashboard")
 
-    sessions = fetch_sessions()
+    date_from = request.args.get("date_from")
+    date_to = request.args.get("date_to")
+    task_search = request.args.get("task_search")
+    energy_filter = request.args.get("energy_filter")
+
+    has_filters = any([date_from, date_to, task_search, energy_filter])
+
+    if has_filters:
+        sessions = fetch_filtered_sessions(date_from, date_to, task_search, energy_filter)
+    else:
+        sessions = fetch_sessions()
+
     insights = analyze_sessions(sessions)
-    return render_template("dashboard.html", sessions=sessions, insights=insights)
+    return render_template("dashboard.html", sessions=sessions, insights=insights,
+                           date_from=date_from or "", date_to=date_to or "",
+                           task_search=task_search or "", energy_filter=energy_filter or "")
 
 @app.route("/delete/<int:session_id>", methods=["POST"])
 def remove_session(session_id):

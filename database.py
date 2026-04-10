@@ -32,6 +32,31 @@ def fetch_sessions():
     connection.close()
     return rows
 
+def fetch_filtered_sessions(date_from=None, date_to=None, task_search=None, energy_filter=None):
+    connection = get_connection()
+    cursor = connection.cursor()
+    query = "SELECT id, session_date, time_period, duration, energy_level, task_type FROM sessions WHERE 1=1"
+    params = []
+
+    if date_from:
+        query += " AND session_date >= ?"
+        params.append(date_from)
+    if date_to:
+        query += " AND session_date <= ?"
+        params.append(date_to)
+    if task_search:
+        query += " AND task_type LIKE ?"
+        params.append(f"%{task_search}%")
+    if energy_filter:
+        query += " AND energy_level = ?"
+        params.append(energy_filter)
+
+    query += " ORDER BY id DESC"
+    cursor.execute(query, params)
+    rows = cursor.fetchall()
+    connection.close()
+    return rows
+
 def delete_session(session_id):
     connection = get_connection()
     cursor = connection.cursor()

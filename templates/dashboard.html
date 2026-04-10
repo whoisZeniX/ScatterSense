@@ -6,6 +6,7 @@
     <title>FocusLens</title>
     <link rel="stylesheet" href="/static/css/styles.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -123,6 +124,33 @@
                     </button>
                 </form>
             </div>
+
+            <div class="glass-panel p-8 flex flex-col h-full">
+                <h2
+                    class="text-xl font-semibold mb-6 text-stone-200 flex items-center gap-3 border-b border-stone-800 pb-4">
+                    <span class="w-2 h-2 rounded-full bg-white"></span>
+                    Live Analytics
+                </h2>
+                <div class="flex-1 space-y-8 flex flex-col justify-center">
+                    <div class="h-48 w-full rounded-md border border-stone-800 p-4 bg-stone-900">
+                        <canvas id="timeChart"></canvas>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div
+                            class="h-40 flex items-center justify-center relative rounded-md border border-stone-800 p-4 bg-stone-900">
+                            <canvas id="taskChart"></canvas>
+                            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                <div class="text-center">
+                                    <span class="text-[10px] text-stone-500 uppercase">Tasks</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="h-40 rounded-md border border-stone-800 p-4 bg-stone-900">
+                            <canvas id="energyChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="glass-panel p-8">
@@ -189,6 +217,8 @@
             </div>
         </div>
     </div>
+
+    <script src="/static/js/app.js"></script>
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, jsonify
 
 from database import initialize_database, insert_session, fetch_sessions, delete_session
 from utils.analysis import analyze_sessions
@@ -31,9 +31,15 @@ def dashboard():
     return render_template("dashboard.html", sessions=sessions, insights=insights)
 
 @app.route("/delete/<int:session_id>", methods=["POST"])
-def remove_sessions(session_id):
+def remove_session(session_id):
     delete_session(session_id)
     return redirect("/dashboard")
 
-if __name__ == "__main__"
-    app.run(debug=True)    
+@app.route("/chart-data")
+def chart_data():
+    sessions = fetch_sessions()
+    insights = analyze_sessions(sessions)
+    return jsonify(insights)
+
+if __name__ == "__main__":
+    app.run(debug=True)

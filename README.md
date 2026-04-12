@@ -1,58 +1,68 @@
-# ScatterSense 🎯
+<div align="center">
 
-Hey everyone! Welcome to ScatterSense. I built this app to help keep track of productivity, work sessions, and energy levels throughout the day. If you've ever wondered when you're actually doing your best work, this might help you figure it out.
+<h1>ScatterSense </h1>
 
-**[Check out the live app here!](https://scattersense.onrender.com)**
+</div>
+
+A simple productivity tracking dashboard where you can log your work sessions and see when you are actually getting things done. Built to help spot patterns in your workflow—like figuring out if you are actually productive at 2 AM or if you should just go to sleep.
+
+**[Check out the live app here](https://scattersense.onrender.com/)**
 
 ---
 
-## What does it do?
-ScatterSense is a simple dashboard where you can log the work you do. You just drop in:
-- What kind of task it was
-- How long it took
-- Your energy level at the time
 
-Over time, the app builds up data and gives you insights. It helps you realize things like "Oh, I actually get my best coding done at 10 AM when I have high energy" or "I should probably stop writing docs late at night." It's just a handy way to spot patterns in your workflow.
+## Technologies Used
 
-## Tech Stack
-I kept the stack pretty straightforward and lightweight:
-- **Backend:** Python + Flask
-- **Database:** SQLite (no messy config required)
-- **Frontend:** HTML, CSS, and basic JavaScript for some interactive bits.
+Kept the stack simple:
+- **Backend**: Python, Flask
+- **Frontend**: HTML5, CSS, JavaScript
+- **Database**: SQLite
 
-## Running it locally
+## Local Setup and Installation
 
-If you want to poke around the code or run your own private instance, it's really easy to get started:
+Run on yo machine
 
-1. Clone the repo:
-   ```bash
-   git clone https://github.com/whoisZenix/ScatterSense.git
-   cd ScatterSense
-   ```
+### 1. Prerequisites
+- Python 3.7+
 
-2. Set up a Python virtual environment (so your global packages don't get messed up):
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate
-   ```
+### 2. Clone the Repository
+Pull the code down to your machine:
+```bash
+git clone https://github.com/whoisZenix/ScatterSense.git
+cd ScatterSense
+```
 
-3. Install the dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+### 3. Install Dependencies
+recommend setting up a virtual environment:
 
-4. Start the Flask server! 
-   It'll automatically create a local `scattersense.db` SQLite file for you on the first run.
-   ```bash
-   python app.py
-   ```
+```bash
+# macOS/Linux
+python3 -m venv venv
+source venv/bin/activate
 
-5. Open your browser and go to `http://localhost:5000`
+# Windows
+python -m venv venv
+venv\Scripts\activate
 
-## Author
+# Install the packages
+pip install -r requirements.txt
+```
 
-Built by **Zenix**.
-- Email: zkavish8@gmail.com
-- GitHub: [whoisZenix](https://github.com/whoisZenix)
+### 4. Run the Application
+Start up the Flask server.
 
-Feel free to open an issue or reach out if you have questions!
+```bash
+python app.py
+```
+Open your browser and navigate to `http://localhost:5000`
+
+## How to Use
+
+- **Log a Session**: Use the main form on the dashboard to input your session date, time, duration, energy state, and the type of task you were working on.
+- **Review**: Check the dashboard list right below it to see what you just logged.
+- **Analyze Trends**: Scroll over to the insights charts to start spotting trends in your workflow once you have enough data.
+- **Manage**: Delete old or incorrect entries whenever you need to.
+
+## Built By
+
+- Me 
